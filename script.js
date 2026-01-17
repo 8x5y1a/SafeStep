@@ -4,11 +4,12 @@ try {
         "wss://gannon-unfiscal-reactively.ngrok-free.dev/ws",
     );
     if (ws) {
-        ws.onmessage(() => {
+        ws.onmessage = (event) => {
             showNotification();
-        });
+        };
     }
-} catch {
+} catch (err) {
+    console.log(err);
     console.log("Websocket is not open");
 }
 
@@ -16,7 +17,10 @@ const notification = document.getElementById("notification");
 const triggerHelp = document.getElementById("triggerHelp");
 const request = document.getElementById("request");
 
-function showNotification(message, duration = 3000) {
+function showNotification(
+    message = "A user is requesting help!",
+    duration = 3000,
+) {
     notification.textContent = message;
     notification.classList.remove("hidden");
 
