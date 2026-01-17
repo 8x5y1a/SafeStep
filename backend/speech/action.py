@@ -5,12 +5,12 @@ prompt_context = "You will be given a transcript, from this transcript you must 
 
 
 async def read_transcript(transcription: str):
-    print(transcription)
+    print("Transcript: " + transcription)
 
     # Figure out what the user is requesting
     answer = await prompt_gemini(prompt_context + transcription)
     if answer == "Nothing":
-        print("nothing!")
+        print("nothing to do")
         return
     if answer == "Vision":
         print("vision")
@@ -19,5 +19,3 @@ async def read_transcript(transcription: str):
 
     print(answer)
     text_to_speech(answer)
-
-    # TODO: Automatically play the audio that has been created.
