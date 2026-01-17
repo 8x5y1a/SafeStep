@@ -3,7 +3,7 @@ from client import get_client
 
 
 def text_to_speech(
-    text: str, output_path: str = "output.mp3", voice_id: str = "Rachel"
+    text: str, output_path: str = "output.mp3", voice_id: str = "goT3UYdM9bhm0n2lmKQx"
 ):
     client = get_client()
 
