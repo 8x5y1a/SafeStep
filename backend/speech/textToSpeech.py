@@ -1,5 +1,5 @@
 from elevenlabs import VoiceSettings
-from client import get_client
+from backend.speech.client import get_client
 
 
 def text_to_speech(

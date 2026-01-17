@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv("OPENROUTER_API_KEY")
-print(api_key)
 
 
 async def prompt_gemini(prompt):

@@ -1,4 +1,4 @@
-from client import get_client
+from backend.speech.client import get_client
 
 
 def speech_to_text(audio_path: str) -> str:
