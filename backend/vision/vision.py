@@ -1,10 +1,10 @@
 import cv2
 from ultralytics import YOLO
 
-# Load AI model
-model = YOLO("yolov8n.pt")  # small & fast
+# yolo is ai
+model = YOLO("yolov8n.pt")  
 
-# Open camera
+# open camera
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
 if not cap.isOpened():
@@ -16,10 +16,10 @@ while True:
     if not ret:
         break
 
-    # 👁️ AI looks at the frame
+    # ai sees frame
     results = model(frame)
 
-    # Draw AI predictions on the image
+    # draw squares and what its seeing
     annotated_frame = results[0].plot()
 
     cv2.imshow("AI Vision", annotated_frame)
