@@ -1,0 +1,8 @@
+from tts import text_to_speech
+from stt import speech_to_text
+
+if __name__ == "__main__":
+    text_to_speech("Hello Jeff, this is ElevenLabs text to speech.")
+
+    text = speech_to_text("input_audio.wav")
+    print("Transcription:", text)
