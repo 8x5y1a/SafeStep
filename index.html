@@ -1,2 +1,22 @@
-<h1>WElcome to safe step</h1>
-<h1>Testing hosting</h1>
+<!doctype html>
+<html>
+    <body>
+        <h1>TESTING</h1>
+
+        <script>
+            const ws = new WebSocket(
+                "wss://gannon-unfiscal-reactively.ngrok-free.dev/ws",
+            );
+            console.log(ws);
+            ws.onopen = () => console.log("WebSocket opened");
+            ws.onmessage = (event) =>
+                console.log("Message received:", event.data);
+            ws.onerror = (err) => console.error("WebSocket error", err);
+            ws.onclose = () => console.log("WebSocket closed");
+            ws.onmessage = (event) => {
+                console.log("RECEIVED");
+                alert("testing");
+            };
+        </script>
+    </body>
+</html>
