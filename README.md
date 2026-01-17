@@ -6,9 +6,9 @@ This project is a UOttahack 8 hackathon submission designed to assist individual
 
 Users interact with the system using voice commands triggered by a chosen keyword (currently **“Jarvis”**). The system can:
 
-- **Request help** — notify a designated contact or responder.
-- **Describe the surroundings** — identify objects or obstacles in front of the user.
-- **Provide safe path guidance** — suggest the best route to avoid danger or obstacles.
+- **Request help** —> notify the volunteer application that a person is in need of help, sharing the location of the user.
+- **Describe the surroundings** —> identify objects or obstacles in front of the user.
+- **Provide safe path guidance** —> suggest the best route to avoid danger or obstacles.
 
 ---
 
