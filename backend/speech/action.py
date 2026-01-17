@@ -3,6 +3,7 @@ from backend.services.gemini import prompt_gemini
 from dotenv import load_dotenv
 import os
 import requests
+from backend.vision.vision import observe_camera
 
 load_dotenv()
 
@@ -20,9 +21,11 @@ async def read_transcript(transcription: str):
         return
     if answer == "Vision":
         print("VISION ")
-        global isVisionRequested
-        isVisionRequested = True
-        print("In actionL:", isVisionRequested)
+        answer = await observe_camera()
+        if answer:
+            text_to_speech(answer)
+        else:
+            print("NO ANSWER PROVIDED")
         return
 
     requests.post(str(os.getenv("NGROK_URL")) + "/broadcast")  # json={"info": "TODO:"}
