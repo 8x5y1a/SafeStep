@@ -1,4 +1,4 @@
-# UOttahack 8 — Visual Assistance for the Visually Impaired
+# UOttahack 8 — Safe Step
 
 ## Project Overview
 
@@ -19,6 +19,12 @@ Users interact with the system using voice commands triggered by a chosen keywor
 - Voice-based responses and guidance
 - Help request feature to alert someone nearby or remotely
 - Integrates with ElevenLabs and OpenRouter for speech and AI capabilities
+
+---
+
+## Demo
+
+TODO: Add video here when we have our demo ready
 
 ---
 
