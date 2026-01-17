@@ -1,32 +1,35 @@
-import sounddevice as sd
+import threading
 import queue
 import json
 import os
-import time
+import asyncio
+import sounddevice as sd
+from backend.speech.action import read_transcript
 from vosk import Model, KaldiRecognizer
+from pathlib import Path
+from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+load_dotenv(BASE_DIR / ".env")
+api_key = os.getenv("OPENROUTER_API_KEY")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "vosk-model-small-en-us-0.15")
 
 model = Model(MODEL_PATH)
-
 q = queue.Queue()
+
+samplerate = 16000
+KEYWORD = "jarvis"
 
 
 def audio_callback(indata, frames, time, status):
     q.put(bytes(indata))
 
 
-samplerate = 16000
+def vosk_thread(loop, transcript_queue):
+    recognizer = KaldiRecognizer(model, samplerate)
 
-# Create recognizer for keyword spotting
-recognizer = KaldiRecognizer(model, samplerate)
-
-# Hardcode keyword
-KEYWORD = "hello"
-
-
-def listen_forever():
     with sd.RawInputStream(
         samplerate=samplerate,
         blocksize=8000,
@@ -35,37 +38,34 @@ def listen_forever():
         callback=audio_callback,
     ):
         print("Listening...")
-
         while True:
             data = q.get()
-
             if recognizer.AcceptWaveform(data):
                 result = json.loads(recognizer.Result())
                 text = result.get("text", "")
 
-                # Check for keyword
                 if KEYWORD in text:
-                    print("Keyword detected! Transcribing...")
-
-                    # Now start transcription mode
-                    transcribe_mode()
+                    loop.call_soon_threadsafe(transcript_queue.put_nowait, text)
 
 
-def transcribe_mode():
-    # Create new recognizer for transcription
-    rec = KaldiRecognizer(model, samplerate)
-    rec = KaldiRecognizer(model, samplerate)
-
-    print("Recording... (speak now)")
-
+async def process_loop():
     while True:
-        data = q.get()
-        if rec.AcceptWaveform(data):
-            result = json.loads(rec.Result())
-            print("Transcription:", result.get("text", ""))
-            # TODO: Send to the Olivier's code to determine what we need
-            break
+        transcript = await transcript_queue.get()
+        # background task
+        asyncio.create_task(read_transcript(transcript))
+
+
+async def main():
+    global transcript_queue
+    transcript_queue = asyncio.Queue()
+
+    loop = asyncio.get_running_loop()
+    thread = threading.Thread(
+        target=vosk_thread, args=(loop, transcript_queue), daemon=True
+    )
+    thread.start()
+    await process_loop()
 
 
 if __name__ == "__main__":
-    listen_forever()
+    asyncio.run(main())
