@@ -27,7 +27,7 @@ async def describe_scene(seen_objects):
         print("objects found")
 
     objects_str = ", ".join(seen_objects)
-    prompt = f"I will provide a list of items that you can see in an image. Please describe the scene to the user as if he is a blind user requesting help to see what is in front of him. {objects_str}."
+    prompt = f"I will provide a list of items that you can see in an image. Please describe the scene to the user as if he is a blind user requesting help to see what is in front of him. Describe the scene in 1-3 sentence. {objects_str}."
     answer = await action.prompt_gemini(prompt)
     return answer
 
@@ -38,7 +38,7 @@ async def observe_camera():
         if not ret:
             break
 
-        cv2.imshow("AI Vision", frame)  # show raw frame continuously
+        # cv2.imshow("AI Vision", frame)  # show raw frame continuously
 
         key = cv2.waitKey(1) & 0xFF
 
@@ -47,8 +47,8 @@ async def observe_camera():
 
         results = model(frame)  # analyze current frame
 
-        annotated_frame = results[0].plot()  # draw predictions
-        cv2.imshow("AI Vision", annotated_frame)
+        # annotated_frame = results[0].plot()  # draw predictions
+        # cv2.imshow("AI Vision", annotated_frame)
 
         objects = results[0].boxes.cls.tolist()
         names = results[0].names
@@ -57,6 +57,4 @@ async def observe_camera():
         # TODO: add a timer time out after 5 seconds
         if len(seen) > 0:
             data = await describe_scene(seen)
-            cap.release()
-            cv2.destroyAllWindows()
             return data
