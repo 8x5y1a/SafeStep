@@ -23,7 +23,7 @@ samplerate = 16000
 recognizer = KaldiRecognizer(model, samplerate)
 
 # Hardcode keyword
-KEYWORD = "hello"
+KEYWORD = "jarvis"
 
 
 def listen_forever():
