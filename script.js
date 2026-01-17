@@ -14,7 +14,6 @@ try {
 }
 
 const notification = document.getElementById("notification");
-const triggerHelp = document.getElementById("triggerHelp");
 const request = document.getElementById("request");
 
 function showNotification(
@@ -31,10 +30,6 @@ function showNotification(
         notification.classList.add("hidden");
     }, duration);
 }
-
-triggerHelp.addEventListener("click", () => {
-    showNotification("A user is requesting help!", 4000);
-});
 
 // ############# MAP LOGIC ##############
 const map = L.map("map").setView([0, 0], 2);
