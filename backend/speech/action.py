@@ -20,23 +20,22 @@ async def read_transcript(transcription: str):
     while pygame.mixer.music.get_busy():
         time.sleep(0.1)
 
-        print("Transcript: " + transcription)
+    print("Transcript: " + transcription)
 
-        # Figure out what the user is requesting
-        answer = await prompt_gemini(prompt_context + transcription)
-        if answer == "Nothing":
-            print("nothing to do")
-            return
-        if answer == "Vision":
-            answer = await observe_camera()
-            if answer:
-                text_to_speech(answer, str(os.getenv("VOICE_ID")))
-            else:
-                print("NO ANSWER PROVIDED")
-            return
+    # Figure out what the user is requesting
+    answer = await prompt_gemini(prompt_context + transcription)
+    print(answer)
+    if answer == "Nothing":
+        print("nothing to do")
+        return
+    if answer == "Vision":
+        answer = await observe_camera()
+        if answer:
+            print(" .")
+            text_to_speech(answer, str(os.getenv("VOICE_ID")))
+        else:
+            print("NO ANSWER PROVIDED")
+        return
 
-        requests.post(
-            str(os.getenv("NGROK_URL")) + "/broadcast"
-        )  # json={"info": "TODO:"}
-        print(answer)
-        text_to_speech(answer, str(os.getenv("VOICE_ID")))
+    text_to_speech(answer, str(os.getenv("VOICE_ID")))
+    requests.post(str(os.getenv("NGROK_URL")) + "/broadcast")  # json={"info": "TODO:"}
