@@ -65,7 +65,7 @@ uvicorn backend.api.api:app --host 0.0.0.0 --port 8000 --workers 1
 ### 2. Run ngrok (Or alternative)
 
 ```bash
-uvicorn backend.api.api:app --host 0.0.0.0 --port 8000 --workers 1
+ngrok http 8000
 ```
 Copy the ngrok forwarding URL (e.g., https://somelink.ngrok.io).
 

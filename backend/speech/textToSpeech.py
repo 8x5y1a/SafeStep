@@ -4,8 +4,10 @@ import sounddevice as sd
 import numpy as np
 
 
-def text_to_speech(text: str, voice_id: str = "goT3UYdM9bhm0n2lmKQx"):
+def text_to_speech(text: str, voice_id: str = "pVnrL6sighQX7hVz89cp"):
     client = get_client()
+    if voice_id == "":
+        voice_id = "pVnrL6sighQX7hVz89cp"
 
     audio = client.text_to_speech.stream(
         voice_id=voice_id,
