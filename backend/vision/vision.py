@@ -40,10 +40,10 @@ async def observe_camera():
 
         # cv2.imshow("AI Vision", frame)  # show raw frame continuously
 
-        key = cv2.waitKey(1) & 0xFF
+        # key = cv2.waitKey(1) & 0xFF
 
-        if key == ord("q"):
-            break
+        # if key == ord("q"):
+        #     break
 
         results = model(frame)  # analyze current frame
 
