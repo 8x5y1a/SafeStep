@@ -1,55 +1,80 @@
 #map {
-    height: 100%;
-    min-height: 600px;
+  height: 100%;
+  min-height: 600px;
 }
 
 .leaflet-control-attribution,
 .leaflet-control-zoom,
 .leaflet-control-layers {
-    background: rgba(20, 20, 20, 0.8) !important;
-    color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(20, 20, 20, 0.8) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
 
 .leaflet-container {
-    background: #111827;
+  background: #111827;
 }
 
-
 :root {
-    background-color: black;
+  background-color: black;
 }
 
 .fade-img {
-  mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
 }
 
-.h2{
-    font-size: xx-large;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
+.h2 {
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
-.h3{
-    font-size: x-large;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    -webkit-animation: glow 1s ease-in-out infinite alternate;
-    -moz-animation: glow 1s ease-in-out infinite alternate;
-    animation: glow 1s ease-in-out infinite alternate;
+.h3 {
+  font-size: x-large;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
 }
 
 @-webkit-keyframes glow {
   from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #067779, 0 0 40px #0b9eb5, 0 0 50px #0d9c78, 0 0 60px #1279a5, 0 0 70px #089c8b;
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #067779,
+      0 0 40px #0b9eb5,
+      0 0 50px #0d9c78,
+      0 0 60px #1279a5,
+      0 0 70px #089c8b;
   }
-  
+
   to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #0c9a7e, 0 0 40px #1ab9a9, 0 0 50px #13aa8c, 0 0 60px #18b79c, 0 0 70px #4ddbff, 0 0 80px #0f8c7d;
+    text-shadow:
+      0 0 20px #fff,
+      0 0 30px #0c9a7e,
+      0 0 40px #1ab9a9,
+      0 0 50px #13aa8c,
+      0 0 60px #18b79c,
+      0 0 70px #4ddbff,
+      0 0 80px #0f8c7d;
   }
 }

@@ -24,13 +24,14 @@ Users interact with the system using voice commands triggered by a chosen keywor
 
 ## Demo
 
-TODO: Add video here when we have our demo ready
+Temporary Demo (While we make a better one)
+https://www.youtube.com/watch?v=YQZsb7ThCmM
 
 ---
 
 ## Requirements
 
-- Python 3.10+  
+- Python 3.10+
 - `venv` for virtual environment
 - `ngrok` for exposing the backend API to the frontend
 - A webcam or camera device for real-time vision input
@@ -53,7 +54,8 @@ venv\Scripts\activate      # Windows
 pip install -r requirements.txt
 ```
 
---- 
+---
+
 ## Configuration
 
 ### 1. Run the Backend API
@@ -67,6 +69,7 @@ uvicorn backend.api.api:app --host 0.0.0.0 --port 8000 --workers 1
 ```bash
 ngrok http 8000
 ```
+
 Copy the ngrok forwarding URL (e.g., https://somelink.ngrok.io).
 
 ### 3. Configure .env

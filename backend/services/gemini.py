@@ -1,7 +1,4 @@
-import requests
-import json
 import os
-import asyncio
 import httpx
 from dotenv import load_dotenv
 
