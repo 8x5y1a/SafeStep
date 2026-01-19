@@ -6,6 +6,7 @@ import requests
 from backend.vision.vision import observe_camera
 import pygame
 import time
+import threading
 
 load_dotenv()
 
@@ -37,5 +38,14 @@ async def read_transcript(transcription: str):
             print("NO ANSWER PROVIDED")
         return
 
-    text_to_speech(answer, str(os.getenv("VOICE_ID")))
-    requests.post(str(os.getenv("NGROK_URL")) + "/broadcast")  # json={"info": "TODO:"}
+    t = threading.Thread(
+        target=text_to_speech, args=(answer, str(os.getenv("VOICE_ID")))
+    )
+
+    t.start()
+    try:
+        requests.post(
+            str(os.getenv("NGROK_URL")) + "/broadcast", timeout=8
+        )  # json={"info": "TODO:"}
+    except:
+        print("error with website")
